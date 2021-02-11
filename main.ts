@@ -26,7 +26,8 @@ function createWindow(): BrowserWindow {
   });
 
   if (serve) {
-
+    console.log("serve");
+    
     win.webContents.openDevTools();
 
     require('electron-reload')(__dirname, {
@@ -35,6 +36,8 @@ function createWindow(): BrowserWindow {
     win.loadURL('http://localhost:4200');
 
   } else {
+    console.log("not serve");
+    
     win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocol: 'file:',

@@ -1,1 +1,65 @@
-<router-outlet></router-outlet>
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content">
+      <div class="">
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="end">
+              <ion-button (click)="changeLang()">
+                {{ "lang" | translate }}
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-list lines="none">
+          <ion-list-header>
+            {{ "sections.title" | translate }}
+          </ion-list-header>
+          <ion-menu-toggle autoHide="false">
+            <ion-item
+              routerLink="/draw"
+              routerLinkActive="selected"
+              routerDirection="root"
+              detail="false"
+            >
+              <ion-icon slot="start" name="aperture-outline"></ion-icon>
+              <ion-label> {{ "sections.draw" | translate }} </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle autoHide="false">
+            <ion-item
+              routerLink="/tvsettings"
+              routerLinkActive="selected"
+              routerDirection="root"
+              detail="false"
+            >
+              <ion-icon slot="start" name="tv-outline"></ion-icon>
+              <ion-label> {{ "sections.tv" | translate }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <ion-list lines="none">
+          <ion-list-header> {{ "more.title" | translate }} </ion-list-header>
+          <ion-menu-toggle autoHide="false">
+            <ion-item
+              routerLink="/about"
+              routerLinkActive="selected"
+              routerDirection="root"
+              detail="false"
+              lines="none"
+            >
+              <ion-icon slot="start" name="information-circle"></ion-icon>
+              <ion-label> {{ "more.about" | translate }} </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </div>
+      <ion-footer mode="ios">
+        <ion-toolbar>
+          <p>{{ "copyright" | translate }}</p>
+        </ion-toolbar>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

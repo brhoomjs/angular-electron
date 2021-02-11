@@ -1,12 +1,15 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "defaultProject": "angular-electron",
   "newProjectRoot": "projects",
   "projects": {
     "angular-electron": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
@@ -17,10 +20,21 @@
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": [
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/theme/variables.scss",
+              "src/global.scss",
+              "node_modules/@pqina/flip/dist/flip.min.css"
             ],
             "scripts": [],
             "customWebpackConfig": {
@@ -110,12 +124,8 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "scripts": [],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "assets": [
-              "src/assets"
-            ],
+            "styles": ["src/styles.scss"],
+            "assets": ["src/assets"],
             "customWebpackConfig": {
               "path": "./angular.webpack.js"
             }
@@ -125,10 +135,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "eslintConfig": ".eslintrc.json",
-            "lintFilePatterns": [
-              "src/**.ts",
-              "main.ts"
-            ]
+            "lintFilePatterns": ["src/**.ts", "main.ts"]
           }
         }
       }
@@ -141,15 +148,12 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "eslintConfig": ".eslintrc.json",
-            "lintFilePatterns": [
-              "e2e/**.ts"
-            ]
+            "lintFilePatterns": ["e2e/**.ts"]
           }
         }
       }
     }
   },
-  "defaultProject": "angular-electron",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

@@ -1,12 +1,43 @@
 {
-  "PAGES": {
-      "HOME": {
-          "TITLE": "App works !",
-          "GO_TO_DETAIL": "Go to Detail"
-      },
-      "DETAIL": {
-        "TITLE": "Detail page !",
-        "BACK_TO_HOME": "Back to Home"
-    }
-  }
+  "lang": "🇦🇪 عربي",
+  "sections": {
+    "title": "Sections",
+    "draw": "Draw Settings",
+    "tv": "TV Settings"
+  },
+  "more": {
+    "title": "More",
+    "about": "About & Support"
+  },
+  "copyright": "All Rights Reserved 2021 - V1.0.0-Alpha02",
+  "tv": {
+    "title": "TV Settings",
+    "control-panel": "Control Panel",
+    "open-tv": "Open TV",
+    "on": "On",
+    "off": "Off",
+    "timer-settings": "Timer Settings",
+    "select-time": "Select Time",
+    "minutes": "Minutes"
+  },
+  "draw": {
+    "title": "Draw Settings",
+    "warning": "You need to turn TV On to start the draw",
+    "select_carfully": "Select carefully",
+    "available": "Available",
+    "participants": "Participants",
+    "run": "Run"
+  },
+  "about": {
+    "title": "About & More",
+    "header": "Credits",
+    "version": "Version",
+    "version_no": "V1.0.0",
+    "devby": "Development By",
+    "name": "Ibrahim Falah",
+    "support": "Support Email",
+    "email": "ibrahim_dev@icloud.com"
+  },
+  "select": "Select",
+  "cancel": "Cancel"
 }

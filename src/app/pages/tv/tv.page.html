@@ -1,0 +1,32 @@
+<ng-container *ngIf="showLoading">
+  <div class="animator">
+    <div style="text-align: center">
+      <h1 class="largeTitle">{{status}}</h1>
+      <ng-lottie
+        style="margin: auto"
+        width="500px"
+        [styles]="{'margin': '0 auto'}"
+        [options]="options"
+      ></ng-lottie>
+    </div>
+  </div>
+</ng-container>
+<ion-content>
+  <ng-container *ngIf="currentWinners.length < 1; else draw">
+    <div class="center">
+      <app-flipper [offset]="timer"></app-flipper>
+    </div>
+  </ng-container>
+  <ng-template #draw>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let winner of currentWinners; let i = index" size="2">
+          <div class="custom-card">
+            <span class="cardNumber">{{i+1}}</span>
+            <h1 class="camelNumber">{{winner}}</h1>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+</ion-content>

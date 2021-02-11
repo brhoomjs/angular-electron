@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'about.title' | translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle
+              >{{ 'about.header' | translate }}</ion-card-subtitle
+            >
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label> {{ 'about.version' | translate }} </ion-label>
+                <ion-text color="primary"
+                  >{{ 'about.version_no' | translate }}</ion-text
+                >
+              </ion-item>
+              <ion-item>
+                <ion-label> {{ 'about.devby' | translate }} </ion-label>
+                <ion-text color="primary"
+                  >{{ 'about.name' | translate }}</ion-text
+                >
+              </ion-item>
+              <ion-item>
+                <ion-label> {{ 'about.support' | translate }} </ion-label>
+                <ion-text color="primary"
+                  >{{ 'about.email' | translate }}</ion-text
+                >
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

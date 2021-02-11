@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -11,27 +12,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { HomeModule } from './home/home.module';
-import { DetailModule } from './detail/detail.module';
 
 import { AppComponent } from './app.component';
-
+import { TvService } from './tv.service';
+import { RouteReuseStrategy } from '@angular/router';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
+export function playerFactory() {
+  return player;
+}
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     CoreModule,
     SharedModule,
-    HomeModule,
-    DetailModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
+    LottieModule.forRoot({ player: playerFactory }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -40,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, TvService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
