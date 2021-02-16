@@ -42,7 +42,7 @@ export class FlipperComponent implements AfterContentInit, OnChanges {
     var deadline = new Date(
       date.setMilliseconds(date.getMilliseconds() + timeDuration)
     );
-    this.counter = Tick.count.down(deadline, { format: ["m", "s"] });
+    this.counter = Tick.count.down(deadline, { format: ["h","m", "s"] });
     const tempTicker = this.ticker;
     this.counter.onupdate = function (value) {
       tempTicker.value = value;

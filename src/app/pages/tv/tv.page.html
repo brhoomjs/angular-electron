@@ -5,6 +5,7 @@
       <ng-lottie
         style="margin: auto"
         width="500px"
+        height="500px"
         [styles]="{'margin': '0 auto'}"
         [options]="options"
       ></ng-lottie>
@@ -19,14 +20,86 @@
   </ng-container>
   <ng-template #draw>
     <ion-grid>
+      <div class="title">
+        <h1 class="text">كفو</h1>
+      </div>
       <ion-row>
-        <ion-col *ngFor="let winner of currentWinners; let i = index" size="2">
+        <ion-col
+          *ngFor="let winner of currentWinners.slice(0, 10); let i = index"
+          size="2"
+        >
           <div class="custom-card">
             <span class="cardNumber">{{i+1}}</span>
             <h1 class="camelNumber">{{winner}}</h1>
           </div>
         </ion-col>
       </ion-row>
+      <br />
+      <br />
+      <div class="title">
+        <h1 class="text">الشهم</h1>
+      </div>
+      <ion-row>
+        <ion-col
+          *ngFor="let winner of currentWinners.slice(10, 20); let i = index"
+          size="2"
+        >
+          <div class="custom-card">
+            <span class="cardNumber">{{i+1}}</span>
+            <h1 class="camelNumber">{{winner}}</h1>
+          </div>
+        </ion-col>
+      </ion-row>
+      <br />
+      <br />
+      <div class="title">
+        <h1 class="text">الظبي</h1>
+      </div>
+      <ion-row>
+        <ion-col
+          *ngFor="let winner of currentWinners.slice(20, 30); let i = index"
+          size="2"
+        >
+          <div class="custom-card">
+            <span class="cardNumber">{{i+1}}</span>
+            <h1 class="camelNumber">{{winner}}</h1>
+          </div>
+        </ion-col>
+      </ion-row>
+      <br />
+      <br />
+      <div class="title">
+        <h1 class="text">الدرع</h1>
+      </div>
+      <ion-row>
+        <ion-col
+          *ngFor="let winner of currentWinners.slice(30, 40); let i = index"
+          size="2"
+        >
+          <div class="custom-card">
+            <span class="cardNumber">{{i+1}}</span>
+            <h1 class="camelNumber">{{winner}}</h1>
+          </div>
+        </ion-col>
+      </ion-row>
+      <br />
+      <br />
+      <div class="title">
+        <h1 class="text">الاسد</h1>
+      </div>
+      <ion-row>
+        <ion-col
+          *ngFor="let winner of currentWinners.slice(40, 50); let i = index"
+          size="2"
+        >
+          <div class="custom-card">
+            <span class="cardNumber">{{i+1}}</span>
+            <h1 class="camelNumber">{{winner}}</h1>
+          </div>
+        </ion-col>
+      </ion-row>
+      <br />
+      <br />
     </ion-grid>
   </ng-template>
 </ion-content>

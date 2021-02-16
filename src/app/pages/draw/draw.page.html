@@ -21,40 +21,19 @@
             >
           </ion-card-header>
           <ion-card-content>
-            <ion-list lines="none">
-              <ion-row>
-                <ion-col size="6">
-                  <ion-item color="light">
-                    <ion-icon slot="start" src="./assets/camel.svg"></ion-icon>
-                    <ion-label>{{ 'draw.available' | translate }}</ion-label>
-                    <ion-select
-                      [(ngModel)]="c"
-                      [okText]="'select' | translate"
-                      [cancelText]="'cancel' | translate"
-                    >
-                      <ion-select-option *ngFor="let i of counter" [value]="i"
-                        >{{i}}</ion-select-option
-                      >
-                    </ion-select>
-                  </ion-item>
-                </ion-col>
-                <ion-col size="6">
-                  <ion-item color="light">
-                    <ion-icon slot="start" name="people"></ion-icon>
-                    <ion-label>{{ 'draw.participants' | translate }}</ion-label>
-                    <ion-select
-                      [(ngModel)]="p"
-                      [okText]="'select' | translate"
-                      [cancelText]="'cancel' | translate"
-                    >
-                      <ion-select-option *ngFor="let i of counter" [value]="i"
-                        >{{i}}</ion-select-option
-                      >
-                    </ion-select>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-            </ion-list>
+            <ion-item color="light">
+              <ion-icon slot="start" name="people"></ion-icon>
+              <ion-label>{{ 'draw.participants' | translate }}</ion-label>
+              <ion-select
+                [(ngModel)]="p"
+                [okText]="'select' | translate"
+                [cancelText]="'cancel' | translate"
+              >
+                <ion-select-option *ngFor="let i of counter" [value]="i"
+                  >{{i}}</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
             <hr />
             <ion-button (click)="run()" slot="with-icon" shape="round">
               {{ 'draw.run' | translate }}

@@ -8,7 +8,7 @@ import { TvService } from '../../tv.service';
   styleUrls: ['./draw.page.scss'],
 })
 export class DrawPage implements OnInit, OnDestroy {
-  counter = [ ...Array(200).keys() ].map( i => i+1);
+  counter = [ ...Array(500).keys() ].map( i => i+1);
   constructor(public tvService: TvService) { }
   lanuched = true;
   subscribtion: Subscription;
@@ -20,8 +20,11 @@ export class DrawPage implements OnInit, OnDestroy {
     this.subscribtion = this.tvService.lanuched.subscribe(v => {
       this.lanuched = v;
       console.log(v);
-      
     })
+    this.checkForDate();
+  }
+  checkForDate() {
+    const d = new Date();
   }
   ngOnDestroy() {
     if (this.subscribtion) {
@@ -29,8 +32,8 @@ export class DrawPage implements OnInit, OnDestroy {
     }
   }
   run(): void {
-    if (this.c && this.p) {
-      this.tvService.startDraw(this.c,this.p);
+    if (this.p) {
+      this.tvService.startDraw(this.p,this.p);
     } else { 
       window.alert("Please Select True Value")
     }

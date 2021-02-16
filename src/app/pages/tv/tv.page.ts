@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { MenuController } from "@ionic/angular";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { IonContent, MenuController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { AnimationOptions } from 'ngx-lottie';
 
@@ -9,12 +9,15 @@ import { AnimationOptions } from 'ngx-lottie';
   styleUrls: ["./tv.page.scss"],
 })
 export class TvPage implements OnInit, OnDestroy {
-  timer: number;
-  winners: number[];
+  @ViewChild(IonContent) ionContent: IonContent;
+
+  timer: number = getInitialTimer(5);
+  winners: number[] = [];
   currentWinners: number[] = [];
-  status = 'جاري تجهيز النتائج';
+  status = 'جاري تجهيز القرعة';
   channel: BroadcastChannel;
-  showLoading = true;
+  showLoading = false;
+  type: 2 | 1 = 1;
   options: AnimationOptions = {
     path: '/assets/uae.json',
   };
@@ -24,8 +27,9 @@ export class TvPage implements OnInit, OnDestroy {
     private translate: TranslateService
   ) {
     document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
-    menuCtrl.enable(false);
+    this.menuCtrl.enable(false);
   }
+  didScroll = false;
   ngOnInit(): void {
     
     
@@ -46,13 +50,14 @@ export class TvPage implements OnInit, OnDestroy {
       }
     });
   }
+  
   async prepareDraw(): Promise<void> {
     this.showLoading = true;
 
     await timeout(3000);
     this.options = {
       ...this.options,
-      path: '/assets/winning.json',
+      path: '/assets/particles.json',
     };
     await timeout(3000);
     this.status = "سيتم البدء بعد ";
@@ -82,13 +87,49 @@ export class TvPage implements OnInit, OnDestroy {
     const intId = setInterval(() => {
       this.currentWinners[i] = this.winners[i];
       i++;
-      if (i >= this.winners.length) clearInterval(intId);
-    }, 750);
+      this.ionContent.scrollToBottom(500);
+      if (i >= this.winners.length) {this.startScrolling();clearInterval(intId);}
+    }, 100);
   }
   ngOnDestroy(): void {
     this.channel.close();
   }
+  async startScrolling(){
+      if (this.didScroll) {
+        this.ionContent.scrollByPoint(0,500, 2000)
+        await timeout(5000)
+        this.ionContent.scrollByPoint(0,500, 2000)
+        await timeout(5000)
+        this.ionContent.scrollByPoint(0,500, 2000)
+        await timeout(5000)
+        this.ionContent.scrollByPoint(0,500, 2000)
+        await timeout(5000)
+      } else {
+        this.ionContent.scrollToTop(2000);
+        await timeout(2000)
+      }
+      this.didScroll = !this.didScroll;
+      await timeout(5000)
+      this.startScrolling();
+  }
 }
-export function timeout(ms) {
+export function timeout(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getInitialTimer(clock: number): number {
+  const currentDate = new Date();
+  const currentClock = currentDate.getHours();
+
+  const dateForClock =
+    currentClock >= clock
+      ? new Date().setDate(currentDate.getDate() + 1)
+      : new Date();
+
+  const clockDate = new Date(
+    new Date(dateForClock).setHours(clock, 0, 0, 0)
+  );
+
+  const timeLeft = clockDate.getTime() - currentDate.getTime();
+  return timeLeft / 1000 / 60;
 }

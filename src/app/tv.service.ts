@@ -69,18 +69,16 @@ export class TvService {
         },
         x,
         y,
-        width,
-        height,
       });
-      // this.tvWindow.loadURL('http://localhost:4200/#/tv');
-      this.tvWindow.loadURL(
-        this.electronService.url.format({
-          pathname: this.electronService.path.join(__dirname, "/index.html"),
-          protocol: "file:",
-          slashes: true,
-          hash: "/tv",
-        })
-      );
+      this.tvWindow.loadURL('http://localhost:4200/#/tv');
+      // this.tvWindow.loadURL(
+      //   this.electronService.url.format({
+      //     pathname: this.electronService.path.join(__dirname, "/index.html"),
+      //     protocol: "file:",
+      //     slashes: true,
+      //     hash: "/tv",
+      //   })
+      // );
       this.tvWindow.on("closed", () => {
         this.lanuched.next(false);
       });
